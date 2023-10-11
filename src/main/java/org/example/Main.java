@@ -1,19 +1,36 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("==명언 앱==");
+        int count = 0;
+        List<WiseSaying> wiseSayings = new ArrayList<>();
+        while (true) {
+            System.out.println("명령) :");
+            String input = sc.nextLine().trim();
+            if (input.equals("종료")) {
+                break;
+            } else if (input.equals("등록")) {
+                int id = count + 1;
+                System.out.println("명언 : ");
+                String content = sc.nextLine().trim();
+                System.out.println("작가 : ");
+                String author = sc.nextLine().trim();
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+                WiseSaying wiseSaying = new WiseSaying(id, content, author);
+                wiseSayings.add(wiseSaying);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+                System.out.printf("%d번 명언이 등록되었습니다.\n",id);
+                count = id;
+            }
+            else if (input.equals("목록")){
+                System.out.printf("생성된 명언 수 : %d\n", wiseSayings.size());
+            }
         }
     }
 }
